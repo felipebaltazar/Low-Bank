@@ -1,3 +1,4 @@
+
 namespace LowBank.Windows
 {
     public partial class Home : Form
@@ -5,26 +6,35 @@ namespace LowBank.Windows
         //Representa o caracter de backspace
         const char BACKSPACE_CHAR = '\b';
 
-        List<Account> ContasDeClientes;
+        List<Customer> Clientes;
 
         public Home()
         {
             InitializeComponent();
+            this.amountLabel.Text = string.Empty;
+            this.userLabel.Text = string.Empty;
 
-            ContasDeClientes = new List<Account>();
+            LoadData();
+        }
 
-            Account contaDoGui = new Account(123456);
-            ContasDeClientes.Add(contaDoGui);
 
-            Account contaDoIgor = new Account(987654);
-            ContasDeClientes.Add(contaDoIgor);
+        private void LoadData()
+        {
+            Clientes = new List<Customer>();
+            string[] lines = File.ReadAllLines(@"C:\Users\felip\source\Low-Bank\LowBank.Windows\Dados.csv");
 
-            Account contaDoFelipe = new Account(963852);
-            ContasDeClientes.Add(contaDoFelipe);
+            for (int i = 1; i < lines.Length; i++)
+            {
+                Customer novoCliente = Customer.Parse(lines[i]);
+                Clientes.Add(novoCliente);
+            }
         }
 
         private void AccountTextbox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            amountLabel.Text = string.Empty;
+            userLabel.Text = string.Empty;
+
             if (sender is TextBoxBase campoDeTexto)
             {
                 e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != BACKSPACE_CHAR;
@@ -33,18 +43,21 @@ namespace LowBank.Windows
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            int accountNumber = Convert.ToInt32(accountTextbox.Text);
-
-            for (int i = 0; i < ContasDeClientes.Count; i++)
+            if (!long.TryParse(accountTextbox.Text, out long accountNumber))
             {
-                Account contaAtual = ContasDeClientes[i];
-                bool ehAContaQueQueremos = contaAtual.Id == accountNumber;
-
-                if (ehAContaQueQueremos)
-                {
-                    decimal amount = contaAtual.Amount;
-                }
+                return;
             }
+
+            Customer cliente = Clientes.FirstOrDefault(c => c.CPF == accountNumber || c.Account.Id == accountNumber);
+
+            if (cliente == null)
+            {
+                return;
+            }
+
+            amountLabel.Text = "Valor em conta: " + cliente.Account.Amount;
+            userLabel.Text = $"Bem vindo: {cliente.Name}\nEmail: {cliente.Email}\nCPF: {cliente.CPF}";
+
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LowBank.Windows
+﻿namespace LowBank.Windows
 {
     internal class Account
     {
@@ -27,9 +21,10 @@ namespace LowBank.Windows
             get { return _amount; }
         }
 
-        public Account(int id)
+        public Account(int id, decimal ammount)
         {
             _id = id;
+            _amount = ammount;
         }
     }
 }
