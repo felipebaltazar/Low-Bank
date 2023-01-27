@@ -11,12 +11,8 @@ namespace LowBank.Windows
         public Home()
         {
             InitializeComponent();
-            this.amountLabel.Text = string.Empty;
-            this.userLabel.Text = string.Empty;
-
             LoadData();
         }
-
 
         private void LoadData()
         {
@@ -32,8 +28,13 @@ namespace LowBank.Windows
 
         private void AccountTextbox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            amountLabel.Text = string.Empty;
-            userLabel.Text = string.Empty;
+            nameTextBox.Text = string.Empty;
+            idTextBox.Text = string.Empty;
+            cpfTextBox.Text = string.Empty;
+            emailTextBox.Text = string.Empty;
+            amountTextBox.Text = string.Empty;
+            phoneTextbox.Text = string.Empty;
+            transferButton.Visible = false;
 
             if (sender is TextBoxBase campoDeTexto)
             {
@@ -48,16 +49,26 @@ namespace LowBank.Windows
                 return;
             }
 
-            Customer cliente = Clientes.FirstOrDefault(c => c.CPF == accountNumber || c.Account.Id == accountNumber);
+            Customer? cliente = Clientes?.FirstOrDefault(c => c.CPF == accountNumber || c.Account.Id == accountNumber);
 
             if (cliente == null)
             {
                 return;
             }
 
-            amountLabel.Text = "Valor em conta: " + cliente.Account.Amount;
-            userLabel.Text = $"Bem vindo: {cliente.Name}\nEmail: {cliente.Email}\nCPF: {cliente.CPF}";
+            nameTextBox.Text = cliente.Name;
+            idTextBox.Text = cliente.Account.Id.ToString();
+            cpfTextBox.Text = cliente.CPF.ToString(@"000\.000\.000\-00");
+            emailTextBox.Text = cliente.Email;
+            amountTextBox.Text = $"R$ {cliente.Account.Amount}";
+            phoneTextbox.Text = string.Format(@"{0:+00(00)#####-####}", cliente.Telefone);
+            transferButton.Visible = true;
+        }
 
+        private void newClientButton_Click(object sender, EventArgs e)
+        {
+            var registrationForm = new Registration();
+            registrationForm.Show();
         }
     }
 }

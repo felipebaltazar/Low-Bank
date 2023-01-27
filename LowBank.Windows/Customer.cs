@@ -4,19 +4,22 @@
     {
         private readonly string _name;
         private readonly string _email;
+        private readonly long _telefone;
         private readonly long _cpf;
 
         public string Name => _name;
         public string Email => _email;
         public long CPF => _cpf;
 
-        public Account Account { get; set; }
+        public long Telefone => _telefone;
 
-        public Customer(string name, string email, long cpf)
+        public Account Account { get; set; }
+        public Customer(string name, string email, long cpf, long telefone)
         {
             _name = name;
             _email = email;
             _cpf = cpf;
+            _telefone = telefone;
         }
 
         internal static Customer Parse(string line)
@@ -27,7 +30,8 @@
             string nome = infos[1];
             long cpf = Convert.ToInt64(infos[2]);
             string email = infos[3];
-            var customer = new Customer(nome, email, cpf);
+            long telefone = Convert.ToInt64(infos[4]);
+            var customer = new Customer(nome, email, cpf, telefone);
 
             // Criação da conta
             int conta = Convert.ToInt32(infos[0]);
