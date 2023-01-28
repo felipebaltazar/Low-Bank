@@ -1,3 +1,5 @@
+using LowBank.Windows.Presentation;
+
 namespace LowBank.Windows
 {
     internal static class Program

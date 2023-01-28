@@ -1,6 +1,8 @@
-﻿namespace LowBank.Windows
+﻿using LowBank.Windows.Infrastructure;
+
+namespace LowBank.Windows.Models
 {
-    internal class Customer
+    public class Customer
     {
         private readonly string _name;
         private readonly string _email;
@@ -10,10 +12,10 @@
         public string Name => _name;
         public string Email => _email;
         public long CPF => _cpf;
-
         public long Telefone => _telefone;
 
         public Account Account { get; set; }
+
         public Customer(string name, string email, long cpf, long telefone)
         {
             _name = name;
@@ -40,6 +42,12 @@
             customer.Account = new Account(conta, saldo);
 
             return customer;
+        }
+
+        public override string ToString()
+        {
+            string validCPF = CPF.ToString().PadLeft(11, '0');
+            return $"\n{Account.Id},{Name},{validCPF},{Email},{Telefone},{Account.Amount}";
         }
     }
 }

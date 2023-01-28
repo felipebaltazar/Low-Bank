@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LowBank.Windows
+namespace LowBank.Windows.Presentation
 {
-    public partial class Registration : Form
+    public partial class Transfer : Form
     {
-        public Registration()
+        public Transfer()
         {
             InitializeComponent();
-        }
-
-        private void newClientButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

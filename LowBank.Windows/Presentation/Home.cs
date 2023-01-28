@@ -1,29 +1,21 @@
 
-namespace LowBank.Windows
+using LowBank.Windows.Models;
+using LowBank.Windows.Data;
+
+namespace LowBank.Windows.Presentation
 {
     public partial class Home : Form
     {
         //Representa o caracter de backspace
         const char BACKSPACE_CHAR = '\b';
 
-        List<Customer> Clientes;
+        CustomerRepository customerRepository;
 
         public Home()
         {
+            customerRepository = new CustomerRepository();
             InitializeComponent();
-            LoadData();
-        }
-
-        private void LoadData()
-        {
-            Clientes = new List<Customer>();
-            string[] lines = File.ReadAllLines(@"C:\Users\felip\source\Low-Bank\LowBank.Windows\Dados.csv");
-
-            for (int i = 1; i < lines.Length; i++)
-            {
-                Customer novoCliente = Customer.Parse(lines[i]);
-                Clientes.Add(novoCliente);
-            }
+            customerRepository.LoadData();
         }
 
         private void AccountTextbox_KeyPress(object sender, KeyPressEventArgs e)
@@ -49,7 +41,7 @@ namespace LowBank.Windows
                 return;
             }
 
-            Customer? cliente = Clientes?.FirstOrDefault(c => c.CPF == accountNumber || c.Account.Id == accountNumber);
+            Customer? cliente = customerRepository.GetCustomerOrDefault(accountNumber);
 
             if (cliente == null)
             {
@@ -67,8 +59,10 @@ namespace LowBank.Windows
 
         private void newClientButton_Click(object sender, EventArgs e)
         {
-            var registrationForm = new Registration();
+            var registrationForm = new Registration(customerRepository);
             registrationForm.Show();
+
+            registrationForm.FormClosed += (s, e) => customerRepository.LoadData();
         }
     }
 }

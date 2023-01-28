@@ -1,4 +1,4 @@
-﻿namespace LowBank.Windows
+﻿namespace LowBank.Windows.Presentation
 {
     partial class Home
     {
@@ -45,6 +45,7 @@
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.transferButton = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -259,5 +260,6 @@
         private Label label5;
         private TextBox cpfTextBox;
         private Button transferButton;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

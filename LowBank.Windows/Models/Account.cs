@@ -1,6 +1,6 @@
-﻿namespace LowBank.Windows
+﻿namespace LowBank.Windows.Models
 {
-    internal class Account
+    public class Account
     {
         //Numero da conta
         private readonly int _id;
@@ -8,11 +8,11 @@
         //Saldo
         private decimal _amount;
 
-        public int Id 
+        public int Id
         {
-            get 
+            get
             {
-                return _id; 
+                return _id;
             }
         }
 
