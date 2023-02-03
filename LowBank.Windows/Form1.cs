@@ -1,24 +1,29 @@
+
 namespace LowBank.Windows
 {
     public partial class Form1 : Form
     {
-        List<Account> accounts;
+        List<Account> accounts = new List<Account>();
 
         public Form1()
         {
             InitializeComponent();
+            LoadData();
+        }
 
-            Account contaDoCristian = new Account(123, "Cristian");
+        private void LoadData()
+        {
+            string diretorio = @"C:\Users\felip\source\Low-Bank\LowBank.Windows\dados.csv";
+            string[] linhas = File.ReadAllLines(diretorio);
 
-            Account contaDoFelipe = new Account(456, "Felipe");
+            // Loop pra ler cada linha
+            for (int i = 1; i < linhas.Length; i++)
+            {
+                string linhaAtual = linhas[i];
 
-            Account contaDoGuilherme = new Account(789, "Guilherme");
-
-            accounts = new List<Account>();
-
-            accounts.Add(contaDoCristian);
-            accounts.Add(contaDoFelipe);
-            accounts.Add(contaDoGuilherme);
+                // Adicionar nova conta na lista "accounts"
+                accounts.Add(Account.Parse(linhaAtual));
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,6 +39,7 @@ namespace LowBank.Windows
                 if (contaAtual.Id == id)
                 {
                     amountLabel.Text = "Saldo em conta: R$" + contaAtual.Amount;
+                    break;
                 }
             }
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LowBank.Windows
+﻿namespace LowBank.Windows
 {
     internal class Account
     {
@@ -28,10 +22,29 @@ namespace LowBank.Windows
             }
         }
 
-        public Account(int id, string name)
+        public Account(int id, string name, decimal amount)
         {
-            _id = id;
-            _name = name;
+            this._id = id;
+            this._name = name;
+            this.amount = amount;
+        }
+
+        public static Account Parse(string texto)
+        {
+            string[] informacoes = texto.Split(',', 6);
+
+            var conta = Convert.ToInt32(informacoes[0]);
+            var nome = informacoes[1];
+            var cpf = informacoes[2];
+            var email = informacoes[3];
+            var telefone = informacoes[4];
+
+            var saldo = informacoes[5].ConvertDecimalString();
+
+            // Transformar string em Account
+            Account novaConta = new Account(conta, nome, saldo);
+
+            return novaConta;
         }
     }
 }
