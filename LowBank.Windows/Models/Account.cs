@@ -8,6 +8,8 @@
         //Saldo
         private decimal _amount;
 
+        private int _limit;
+
         public int Id
         {
             get
@@ -16,15 +18,29 @@
             }
         }
 
+        public int Limit => _limit;
+
         public decimal Amount
         {
             get { return _amount; }
+            set { _amount = value; }
         }
 
-        public Account(int id, decimal ammount)
+        public Account(int id, decimal amount, int limit)
         {
             _id = id;
-            _amount = ammount;
+            _amount = amount;
+            _limit = limit;
+        }
+
+        public bool Transfer(Account destiny, decimal transferAmount)
+        {
+            if ((Amount + Limit) < transferAmount)
+                return false;
+
+            Amount -= transferAmount;
+            destiny.Amount += transferAmount;
+            return true;
         }
     }
 }

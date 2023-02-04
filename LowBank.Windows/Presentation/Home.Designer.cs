@@ -223,6 +223,7 @@
             this.transferButton.Text = "Transferir";
             this.transferButton.UseVisualStyleBackColor = true;
             this.transferButton.Visible = false;
+            this.transferButton.Click += new System.EventHandler(this.transferButton_Click);
             // 
             // Home
             // 

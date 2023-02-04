@@ -9,7 +9,8 @@ namespace LowBank.Windows.Presentation
         //Representa o caracter de backspace
         const char BACKSPACE_CHAR = '\b';
 
-        CustomerRepository customerRepository;
+        private CustomerRepository customerRepository;
+        private Customer currentCustomer;
 
         public Home()
         {
@@ -41,19 +42,19 @@ namespace LowBank.Windows.Presentation
                 return;
             }
 
-            Customer? cliente = customerRepository.GetCustomerOrDefault(accountNumber);
+            currentCustomer = customerRepository.GetCustomerOrDefault(accountNumber);
 
-            if (cliente == null)
+            if (currentCustomer == null)
             {
                 return;
             }
 
-            nameTextBox.Text = cliente.Name;
-            idTextBox.Text = cliente.Account.Id.ToString();
-            cpfTextBox.Text = cliente.CPF.ToString(@"000\.000\.000\-00");
-            emailTextBox.Text = cliente.Email;
-            amountTextBox.Text = $"R$ {cliente.Account.Amount}";
-            phoneTextbox.Text = string.Format(@"{0:+00(00)#####-####}", cliente.Telefone);
+            nameTextBox.Text = currentCustomer.Name;
+            idTextBox.Text = currentCustomer.Account.Id.ToString();
+            cpfTextBox.Text = currentCustomer.CPF.ToString(@"000\.000\.000\-00");
+            emailTextBox.Text = currentCustomer.Email;
+            amountTextBox.Text = $"R$ {currentCustomer.Account.Amount}";
+            phoneTextbox.Text = string.Format(@"{0:+00(00)#####-####}", currentCustomer.Telefone);
             transferButton.Visible = true;
         }
 
@@ -63,6 +64,13 @@ namespace LowBank.Windows.Presentation
             registrationForm.Show();
 
             registrationForm.FormClosed += (s, e) => customerRepository.LoadData();
+        }
+
+        private void transferButton_Click(object sender, EventArgs e)
+        {
+            var transferForm = new Transfer(currentCustomer, customerRepository);
+            transferForm.Show();
+            transferForm.FormClosed += (s, e) => SearchButton_Click(null, null);
         }
     }
 }
