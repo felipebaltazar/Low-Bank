@@ -5,9 +5,9 @@ namespace LowBank.Windows.Presentation
 {
     public partial class Registration : Form
     {
-        CustomerRepository customerRepository;
+        BaseCustomerRepository customerRepository;
 
-        public Registration(CustomerRepository repository)
+        public Registration(BaseCustomerRepository repository)
         {
             customerRepository = repository;
             InitializeComponent();

@@ -7,11 +7,11 @@ namespace LowBank.Windows.Presentation
     {
         const char BACKSPACE_CHAR = '\b';
 
-        private readonly CustomerRepository _customerRepository;
+        private readonly BaseCustomerRepository _customerRepository;
         private readonly Customer _customer;
         private Customer? destinyCustomer;
 
-        public Transfer(Customer customer, CustomerRepository customerRepository)
+        public Transfer(Customer customer, BaseCustomerRepository customerRepository)
         {
             _customer = customer;
             _customerRepository = customerRepository;

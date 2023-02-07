@@ -2,19 +2,19 @@
 
 namespace LowBank.Windows.Data
 {
-    public class CustomerRepository
+    public class FileCustomerRepository : BaseCustomerRepository
     {
         const string DATABASE_FILE_PATH = @"C:\Users\felip\source\Low-Bank\LowBank.Windows\Dados.csv";
         const string DATABASE_HEADER = "Numero Conta,Nome do cliente,CPF,Email,Telefone,Saldo";
 
         private List<Customer> clientes;
 
-        public CustomerRepository()
+        public FileCustomerRepository()
         {
             clientes = new List<Customer>();
         }
 
-        public void LoadData()
+        public override void LoadData()
         {
             CreateDatabase();
 
@@ -27,30 +27,17 @@ namespace LowBank.Windows.Data
             }
         }
 
-        public Customer GetCustomerOrDefault(long identificationNumber)
+        public override Customer GetCustomerOrDefault(long identificationNumber)
         {
             return clientes.FirstOrDefault(c => c.CPF == identificationNumber || c.Account.Id == identificationNumber);
         }
 
-        public bool Exists(long CPF)
+        public override bool Exists(long CPF)
         {
             return clientes.Any(c => c.CPF == CPF);
         }
 
-        public int GetLastId()
-        {
-            var ultimoId = 0;
-
-            if (clientes.Count > 0)
-            {
-                var ultimoCliente = clientes.Last();
-                ultimoId = ultimoCliente.Account.Id;
-            }
-
-            return ultimoId;
-        }
-
-        public int Save(Customer customer)
+        public override int Save(Customer customer)
         {
             var novoNumeroConta = GetLastId() + 1;
 
@@ -66,7 +53,7 @@ namespace LowBank.Windows.Data
             return customer.Account.Id;
         }
 
-        public void Update(params Customer[] customers)
+        public override void Update(params Customer[] customers)
         {
             foreach(Customer customer in customers)
             {
@@ -89,6 +76,19 @@ namespace LowBank.Windows.Data
                 return;
 
             File.WriteAllText(DATABASE_FILE_PATH, DATABASE_HEADER);
+        }
+
+        private int GetLastId()
+        {
+            var ultimoId = 0;
+
+            if (clientes.Count > 0)
+            {
+                var ultimoCliente = clientes.Last();
+                ultimoId = ultimoCliente.Account.Id;
+            }
+
+            return ultimoId;
         }
     }
 }

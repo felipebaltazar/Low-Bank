@@ -9,12 +9,16 @@ namespace LowBank.Windows.Presentation
         //Representa o caracter de backspace
         const char BACKSPACE_CHAR = '\b';
 
-        private CustomerRepository customerRepository;
+        private BaseCustomerRepository customerRepository;
         private Customer currentCustomer;
 
         public Home()
         {
-            customerRepository = new CustomerRepository();
+            customerRepository = new SQLCustomerRepository();
+
+            //Caso seja necessario usar arquivos CSV, descomentar linha abaixo
+            //customerRepository = new FileCustomerRepository();
+
             InitializeComponent();
             customerRepository.LoadData();
         }

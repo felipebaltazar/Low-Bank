@@ -1,27 +1,35 @@
 ﻿using LowBank.Windows.Infrastructure;
+using SQLite;
 
 namespace LowBank.Windows.Models
 {
     public class Customer
     {
-        private readonly string _name;
-        private readonly string _email;
-        private readonly long _telefone;
-        private readonly long _cpf;
+        public string Name { get; set; }
 
-        public string Name => _name;
-        public string Email => _email;
-        public long CPF => _cpf;
-        public long Telefone => _telefone;
+        public string Email { get; set; }
 
+        [PrimaryKey]
+        public long CPF { get; set; }
+
+        public long Telefone { get; set; }
+
+        [Ignore]
         public Account Account { get; set; }
+
+        [Indexed]
+        public int AccountId { get; set; }
 
         public Customer(string name, string email, long cpf, long telefone)
         {
-            _name = name;
-            _email = email;
-            _cpf = cpf;
-            _telefone = telefone;
+            CPF = cpf;
+            Name = name;
+            Email = email;
+            Telefone = telefone;
+        }
+
+        public Customer()
+        {
         }
 
         internal static Customer Parse(string line)
