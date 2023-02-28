@@ -14,7 +14,10 @@ namespace LowBank.Windows.Presentation
 
         public Home()
         {
-            customerRepository = new SQLCustomerRepository();
+            customerRepository = new ApiCustomerRepository();
+
+            //Caso seja necessario usar banco SQLite, descomentar linha abaixo
+            //customerRepository = new SQLCustomerRepository();
 
             //Caso seja necessario usar arquivos CSV, descomentar linha abaixo
             //customerRepository = new FileCustomerRepository();
