@@ -1,23 +1,30 @@
 ﻿using LowBank.Windows.Infrastructure;
+using Newtonsoft.Json;
 using SQLite;
 
 namespace LowBank.Windows.Models
 {
     public class Customer
     {
+        [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("email")]
         public string Email { get; set; }
 
         [PrimaryKey]
+        [JsonProperty("cpf")]
         public long CPF { get; set; }
 
+        [JsonProperty("telefone")]
         public long Telefone { get; set; }
 
         [Ignore]
+        [JsonProperty("account")]
         public Account Account { get; set; }
 
         [Indexed]
+        [JsonIgnore]
         public int AccountId { get; set; }
 
         public Customer(string name, string email, long cpf, long telefone)
