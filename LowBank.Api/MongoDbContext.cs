@@ -13,7 +13,7 @@ namespace LowBank.Api
 
         public MongoDbContext()
         {
-            var config = MongoClientSettings.FromUrl(new MongoUrl("mongodb+srv://felipedasilvabaltazar:<PASS>@lowbankcluster.zmsaz9v.mongodb.net/?retryWrites=true&w=majority"));
+            var config = MongoClientSettings.FromUrl(new MongoUrl("mongodb+srv://felipedasilvabaltazar:96954230@lowbankcluster.zmsaz9v.mongodb.net/?retryWrites=true&w=majority"));
             config.SslSettings = new SslSettings()
             {
                 EnabledSslProtocols = SslProtocols.Tls12
