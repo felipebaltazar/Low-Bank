@@ -70,5 +70,10 @@ namespace LowBank.Windows.Data
 
             return customer.AccountId;
         }
+
+        public override bool Login(LoginModel loginModel)
+        {
+            return true;
+        }
     }
 }

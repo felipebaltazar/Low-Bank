@@ -21,6 +21,7 @@ namespace LowBank.Windows.Presentation
             isValid &= IsValid(emailTextBox.Text, emailErrorLabel);
             isValid &= IsValid(phoneTextbox.Text, phoneErrorLabel);
             isValid &= IsValid(cpfTextBox.Text, cpfErrorLabel);
+            isValid &= IsValid(passwordLabel.Text, passwordLabel);
 
             if (!isValid)
                 return;
@@ -39,7 +40,7 @@ namespace LowBank.Windows.Presentation
             }
 
             long telefone = Convert.ToInt64(phoneTextbox.Text);
-            Customer newCustomer = new Customer(nameTextBox.Text, emailTextBox.Text, cpf, telefone);
+            Customer newCustomer = new Customer(nameTextBox.Text, emailTextBox.Text, cpf, telefone, passwordTextbox.Text);
             int novoNumeroConta = customerRepository.Save(newCustomer);
 
             this.Close();
@@ -70,6 +71,7 @@ namespace LowBank.Windows.Presentation
             emailErrorLabel.Visible = false;
             cpfErrorLabel.Visible = false;
             phoneErrorLabel.Visible = false;
+            passwordLabel.Visible = false;
         }
     }
 }

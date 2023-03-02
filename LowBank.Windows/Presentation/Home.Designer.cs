@@ -28,10 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.accountTextbox = new System.Windows.Forms.TextBox();
-            this.searchButton = new System.Windows.Forms.Button();
             this.label = new System.Windows.Forms.Label();
-            this.newClientButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.cpfTextBox = new System.Windows.Forms.TextBox();
@@ -49,27 +46,6 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // accountTextbox
-            // 
-            this.accountTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.accountTextbox.Location = new System.Drawing.Point(12, 287);
-            this.accountTextbox.Name = "accountTextbox";
-            this.accountTextbox.PlaceholderText = "Numero de conta";
-            this.accountTextbox.Size = new System.Drawing.Size(110, 25);
-            this.accountTextbox.TabIndex = 0;
-            this.accountTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AccountTextbox_KeyPress);
-            // 
-            // searchButton
-            // 
-            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.searchButton.Location = new System.Drawing.Point(128, 287);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(101, 25);
-            this.searchButton.TabIndex = 1;
-            this.searchButton.Text = "Carregar";
-            this.searchButton.UseVisualStyleBackColor = true;
-            this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
-            // 
             // label
             // 
             this.label.AutoSize = true;
@@ -78,17 +54,6 @@
             this.label.Size = new System.Drawing.Size(47, 17);
             this.label.TabIndex = 3;
             this.label.Text = "Nome:";
-            // 
-            // newClientButton
-            // 
-            this.newClientButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.newClientButton.Location = new System.Drawing.Point(339, 287);
-            this.newClientButton.Name = "newClientButton";
-            this.newClientButton.Size = new System.Drawing.Size(121, 25);
-            this.newClientButton.TabIndex = 4;
-            this.newClientButton.Text = "Cadastrar Cliente";
-            this.newClientButton.UseVisualStyleBackColor = true;
-            this.newClientButton.Click += new System.EventHandler(this.newClientButton_Click);
             // 
             // panel1
             // 
@@ -216,7 +181,7 @@
             // 
             this.transferButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.transferButton.Location = new System.Drawing.Point(233, 287);
+            this.transferButton.Location = new System.Drawing.Point(358, 287);
             this.transferButton.Name = "transferButton";
             this.transferButton.Size = new System.Drawing.Size(102, 25);
             this.transferButton.TabIndex = 6;
@@ -229,25 +194,17 @@
             // 
             this.ClientSize = new System.Drawing.Size(475, 324);
             this.Controls.Add(this.transferButton);
-            this.Controls.Add(this.newClientButton);
-            this.Controls.Add(this.searchButton);
-            this.Controls.Add(this.accountTextbox);
             this.Controls.Add(this.panel1);
             this.Name = "Home";
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AccountTextbox_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private TextBox accountTextbox;
-        private Button searchButton;
         private Label label;
-        private Button newClientButton;
         private Panel panel1;
         private TextBox nameTextBox;
         private Label label1;

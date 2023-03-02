@@ -7,12 +7,13 @@ namespace LowBank.Windows.Data
 {
     public class ApiCustomerRepository : BaseCustomerRepository
     {
+        private string accessToken;
         private HttpClient _apiClient;
 
         public ApiCustomerRepository()
         {
             _apiClient = new HttpClient();
-            _apiClient.BaseAddress = new Uri("https://localhost:7154");
+            _apiClient.BaseAddress = new Uri("https://api-lowbank2.azurewebsites.net");
         }
 
         public override bool Exists(long account)
@@ -32,7 +33,11 @@ namespace LowBank.Windows.Data
 
         public override Customer GetCustomerOrDefault(long account)
         {
-            var response = _apiClient.GetAsync($"/Customer/GetCustomerOrDefault/{account}").GetAwaiter().GetResult();
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/Customer/GetCustomerOrDefault/{account}");
+            request.Headers.Add("Authentication", accessToken);
+
+            var response = _apiClient.SendAsync(request).GetAwaiter().GetResult();
+
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var customerString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -72,7 +77,29 @@ namespace LowBank.Windows.Data
 
         public override void Update(params Customer[] customer)
         {
-            throw new NotImplementedException();
+            var customerString = JsonConvert.SerializeObject(customer);
+            var content = new StringContent(customerString);
+            content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+            _apiClient.PatchAsync("/Customer", content).GetAwaiter().GetResult();
+
+        }
+
+        public override bool Login(LoginModel loginModel)
+        {
+            var loginString = JsonConvert.SerializeObject(loginModel);
+            var content = new StringContent(loginString);
+            content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+            var response = _apiClient.PostAsync("/Authentication/Login", content).GetAwaiter().GetResult();
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                accessToken = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                return true;
+            }
+
+            return false;
         }
     }
 }

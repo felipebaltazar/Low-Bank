@@ -13,5 +13,7 @@ namespace LowBank.Windows.Data
         public abstract int Save(Customer customer);
 
         public abstract void Update(params Customer[] customer);
+
+        public abstract bool Login(LoginModel loginModel);
     }
 }

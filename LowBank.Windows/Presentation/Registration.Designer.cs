@@ -41,6 +41,9 @@
             this.phoneErrorLabel = new System.Windows.Forms.Label();
             this.emailErrorLabel = new System.Windows.Forms.Label();
             this.cpfErrorLabel = new System.Windows.Forms.Label();
+            this.passwordLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.passwordTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label5
@@ -118,7 +121,7 @@
             // newClientButton
             // 
             this.newClientButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.newClientButton.Location = new System.Drawing.Point(337, 214);
+            this.newClientButton.Location = new System.Drawing.Point(337, 254);
             this.newClientButton.Name = "newClientButton";
             this.newClientButton.Size = new System.Drawing.Size(121, 25);
             this.newClientButton.TabIndex = 25;
@@ -168,11 +171,42 @@
             this.cpfErrorLabel.TabIndex = 29;
             this.cpfErrorLabel.Text = "O campo \"CPF\" é obrigatório";
             // 
+            // passwordLabel
+            // 
+            this.passwordLabel.Font = new System.Drawing.Font("Segoe UI", 8.830189F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.passwordLabel.ForeColor = System.Drawing.Color.Red;
+            this.passwordLabel.Location = new System.Drawing.Point(12, 231);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(143, 38);
+            this.passwordLabel.TabIndex = 32;
+            this.passwordLabel.Text = "O campo \"Senha\" é obrigatório";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 179);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 17);
+            this.label4.TabIndex = 31;
+            this.label4.Text = "Senha:";
+            // 
+            // passwordTextbox
+            // 
+            this.passwordTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.passwordTextbox.Location = new System.Drawing.Point(12, 203);
+            this.passwordTextbox.Name = "passwordTextbox";
+            this.passwordTextbox.Size = new System.Drawing.Size(155, 25);
+            this.passwordTextbox.TabIndex = 30;
+            // 
             // Registration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 251);
+            this.ClientSize = new System.Drawing.Size(470, 291);
+            this.Controls.Add(this.passwordLabel);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.passwordTextbox);
             this.Controls.Add(this.cpfErrorLabel);
             this.Controls.Add(this.emailErrorLabel);
             this.Controls.Add(this.phoneErrorLabel);
@@ -210,5 +244,8 @@
         private Label phoneErrorLabel;
         private Label emailErrorLabel;
         private Label cpfErrorLabel;
+        private Label passwordLabel;
+        private Label label4;
+        private TextBox passwordTextbox;
     }
 }

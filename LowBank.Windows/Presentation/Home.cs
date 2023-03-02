@@ -12,18 +12,12 @@ namespace LowBank.Windows.Presentation
         private BaseCustomerRepository customerRepository;
         private Customer currentCustomer;
 
-        public Home()
+        public Home(BaseCustomerRepository customerRepository, Customer currentCustomer)
         {
-            customerRepository = new ApiCustomerRepository();
-
-            //Caso seja necessario usar banco SQLite, descomentar linha abaixo
-            //customerRepository = new SQLCustomerRepository();
-
-            //Caso seja necessario usar arquivos CSV, descomentar linha abaixo
-            //customerRepository = new FileCustomerRepository();
-
+            this.currentCustomer = currentCustomer;
+            this.customerRepository = customerRepository;
             InitializeComponent();
-            customerRepository.LoadData();
+            LoadData();
         }
 
         private void AccountTextbox_KeyPress(object sender, KeyPressEventArgs e)
@@ -42,15 +36,8 @@ namespace LowBank.Windows.Presentation
             }
         }
 
-        private void SearchButton_Click(object sender, EventArgs e)
+        private void LoadData()
         {
-            if (!long.TryParse(accountTextbox.Text, out long accountNumber))
-            {
-                return;
-            }
-
-            currentCustomer = customerRepository.GetCustomerOrDefault(accountNumber);
-
             if (currentCustomer == null)
             {
                 return;
@@ -65,19 +52,10 @@ namespace LowBank.Windows.Presentation
             transferButton.Visible = true;
         }
 
-        private void newClientButton_Click(object sender, EventArgs e)
-        {
-            var registrationForm = new Registration(customerRepository);
-            registrationForm.Show();
-
-            registrationForm.FormClosed += (s, e) => customerRepository.LoadData();
-        }
-
         private void transferButton_Click(object sender, EventArgs e)
         {
             var transferForm = new Transfer(currentCustomer, customerRepository);
             transferForm.Show();
-            transferForm.FormClosed += (s, e) => SearchButton_Click(null, null);
         }
     }
 }

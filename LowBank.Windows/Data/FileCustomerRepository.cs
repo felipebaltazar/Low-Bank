@@ -70,6 +70,11 @@ namespace LowBank.Windows.Data
             }
         }
 
+        public override bool Login(LoginModel loginModel)
+        {
+            return true;
+        }
+
         private void CreateDatabase()
         {
             if (File.Exists(DATABASE_FILE_PATH))
