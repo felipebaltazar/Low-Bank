@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LowBank_Mobile.RegistrationPage"
+             Title="Abra sua conta"
+             Shell.BackgroundColor="Black"
+             BackgroundColor="Black">
+    <ContentPage.Resources>
+        <Style TargetType="Entry" x:Name="defaultEntry">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="PlaceholderColor" Value="Gray"/>
+            <Setter Property="ReturnType" Value="Next"/>
+            <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+
+        <Grid RowDefinitions="*,50">
+
+            <VerticalStackLayout
+                Grid.Row="0"
+                Padding="0,25"
+                Spacing="10">
+                <Entry
+                    x:Name="NameEntry"
+                    Placeholder="Digite seu nome completo"/>
+
+                <Entry
+                    x:Name="PhoneEntry"
+                    Placeholder="Informe seu telefone"
+                    Keyboard="Telephone"/>
+
+                <Entry
+                    x:Name="EmailEntry"
+                    Placeholder="Informe seu email"
+                    Keyboard="Email"/>
+
+                <Entry
+                    x:Name="CpfEntry"
+                    Placeholder="Informe seu CPF"
+                    Keyboard="Numeric"/>
+
+                <Entry
+                    x:Name="PasswordEntry"
+                    Placeholder="Crie uma senha"
+                    IsPassword="true"
+                    ReturnType="Done"/>
+            </VerticalStackLayout>
+            
+            <Button
+                x:Name="SaveBtn"
+                Grid.Row="1"
+                Text="Criar Conta"
+                FontFamily="OpenSansSemibold"
+                FontAttributes="Bold"
+                TextColor="Black"
+                BackgroundColor="#fdb62f"
+                CornerRadius="0"
+                Clicked="SaveBtn_Clicked"
+                SemanticProperties.Hint="Clique para criar conta"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="Fill" />
+        </Grid>
+    </ScrollView>
+    
+</ContentPage>

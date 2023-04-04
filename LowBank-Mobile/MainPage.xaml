@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LowBank_Mobile.MainPage"
+             Title="Login"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="Black">
+    <ContentPage.Resources>
+        <Style TargetType="Entry" x:Name="defaultEntry">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="PlaceholderColor" Value="Gray"/>
+            <Setter Property="ReturnType" Value="Next"/>
+            <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="HorizontalOptions" Value="Fill" />
+        </Style>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <Grid
+            Padding="0"
+            RowDefinitions="3*,*,100"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+
+            <Image
+                Source="lowbank.png"
+                SemanticProperties.Description="Lowbank logo marca"
+                HorizontalOptions="Fill" />
+
+            <VerticalStackLayout
+                Grid.Row="1"
+                Spacing="20">
+
+                <Entry 
+                    TextColor="Black"
+                    Keyboard="Numeric"
+                    ReturnType="Next"
+                    BackgroundColor="White"
+                    Placeholder="Digite sua conta ou CPF" />
+
+                <Entry
+                    TextColor="Black"
+                    IsPassword="True"
+                    BackgroundColor="White"
+                    Placeholder="Digite sua Senha" />
+                
+            </VerticalStackLayout>
+            
+            
+            <VerticalStackLayout
+                Grid.Row="2"
+                Spacing="5"
+                HorizontalOptions="FillAndExpand">
+
+                <Button
+                    x:Name="LoginBtn"
+                    Text="Acessar Conta"
+                    TextColor="Black"
+                    BackgroundColor="#fdb62f"
+                    SemanticProperties.Hint="Clique para acessar sua conta"
+                    Clicked="LoginBtn_Clicked" />
+
+                <Button
+                    x:Name="SignBtn"
+                    Text="Abrir Conta"
+                    BorderWidth="2"
+                    FontAttributes="Bold"
+                    BackgroundColor="Transparent"
+                    BorderColor="#fdb62f"
+                    SemanticProperties.Hint="Clique para abrir uma nova conta"
+                    Clicked="SignBtn_Clicked"/>
+
+            </VerticalStackLayout>
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
