@@ -25,7 +25,7 @@ namespace LowBank.Api.Controllers
                 .OrderByDescending(c => c.Account.Id)
                 .FirstOrDefault();
 
-            var accountId = 1000;
+            long accountId = 1000;
             if (lastCustomer != null)
             {
                 accountId = lastCustomer.Account.Id + 1;
