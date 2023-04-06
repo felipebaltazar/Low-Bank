@@ -4,6 +4,9 @@ namespace LowBank_Mobile
 {
     public class Customer
     {
+        [JsonIgnore]
+        public string Avatar { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
 

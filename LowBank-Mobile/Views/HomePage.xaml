@@ -30,12 +30,21 @@
                    HorizontalOptions="StartAndExpand"
                    HorizontalTextAlignment="Start"
                    Text="{Binding Customer.Name, StringFormat='Olá, {0}!'}"/>
-            
+
             <Frame BorderColor="#2f2f2f"
                    WidthRequest="55"
                    CornerRadius="27"
+                   Padding="0"
                    HorizontalOptions="End"
-                   BackgroundColor="#2f2f2f"/>
+                   BackgroundColor="#2f2f2f">
+                
+                <Label Text="&#xf0f3;"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       FontSize="20"
+                       FontFamily="FontIcon"/>
+            </Frame>
         </StackLayout>
     </Shell.TitleView>
     
@@ -110,7 +119,11 @@
                            HorizontalOptions="Start"
                            BorderColor="#fdb62f"
                            BackgroundColor="#fdb62f">
-
+                            <Label Text="&#xf062;"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="20"
+                                   FontFamily="FontIconSolid"/>
                         </Frame>
 
                         <Label Text="Enviar"
@@ -135,7 +148,11 @@
                            HorizontalOptions="Start"
                            BorderColor="#fdb62f"
                            BackgroundColor="#fdb62f">
-
+                            <Label Text="&#xf063;"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="20"
+                                   FontFamily="FontIconSolid"/>
                         </Frame>
 
                         <Label Text="Receber"
@@ -158,6 +175,13 @@
                            BorderColor="LightGray"
                            BackgroundColor="LightGray">
 
+                        <Label Text="&#xf2a1;"
+                               FontFamily="FontIconSolid"
+                               TextColor="Black"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               FontSize="20"/>
+
                     </Frame>
                 </Frame>
 
@@ -166,6 +190,30 @@
             <Label Text="Envio rápido"
                    Margin="0,12"
                    FontSize="20" />
+
+            <ScrollView Orientation="Horizontal"
+                        Margin="-16,0"
+                        HorizontalScrollBarVisibility="Never">
+                
+                <StackLayout Orientation="Horizontal"
+                             BindableLayout.ItemsSource="{Binding Contacts}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout
+                                WidthRequest="80"
+                                HeightRequest="70"
+                                Orientation="Vertical">
+                                <Image WidthRequest="50"
+                                   Source="{Binding Avatar}"/>
+
+                                <Label Text="{Binding Name}"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="White"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
 
             <StackLayout Orientation="Horizontal" Margin="0,20" HorizontalOptions="FillAndExpand">
                 <Label Text="Atividade recente" FontSize="20" />
@@ -183,7 +231,9 @@
                Padding="0,0,0,46"
                Margin="-8,0,-8,-46"
                VerticalOptions="EndAndExpand">
-
+                <ListView>
+                    
+                </ListView>
             </Frame>
 
         </StackLayout>
