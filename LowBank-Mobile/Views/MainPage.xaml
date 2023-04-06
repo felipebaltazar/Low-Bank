@@ -40,6 +40,7 @@
                     Spacing="20">
 
                     <Entry 
+                        x:Name="loginEntry"
                         TextColor="Black"
                         Keyboard="Numeric"
                         ReturnType="Next"

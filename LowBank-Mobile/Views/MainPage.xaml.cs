@@ -32,6 +32,13 @@ public partial class MainPage : ContentPage
         this.SetBinding(LoginErrorProperty, "LoginError");
     }
 
+    protected override void OnDisappearing()
+    {
+        loginEntry.Unfocus();
+        passwordEntry.Unfocus();
+        base.OnDisappearing();
+    }
+
     protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         base.OnPropertyChanged(propertyName);

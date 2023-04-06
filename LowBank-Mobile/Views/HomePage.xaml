@@ -4,49 +4,238 @@
              x:Class="LowBank_Mobile.HomePage"
              Title="Minha conta"
              Shell.BackgroundColor="Black"
+             NavigationPage.HasBackButton="False"
              BackgroundColor="Black">
 
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="FontFamily" Value="OpenSansSemiBold"/>
+            <Setter Property="TextColor" Value="White"/>
         </Style>
     </ContentPage.Resources>
-    
-    <VerticalStackLayout Padding="16">
 
-        <Label Text="{Binding Customer.Name}" FontSize="16" TextColor="White"/>
-        
-        <Frame BackgroundColor="#3b46f1"
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False"/>
+    </Shell.BackButtonBehavior>
+    
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal"
+                     Spacing="10"
+                     Padding="0,0,8,0">
+            <Image HorizontalOptions="Start"
+                   Source="profile2.png"/>
+            
+            <Label VerticalTextAlignment="Center"
+                   FontSize="16"
+                   HorizontalOptions="StartAndExpand"
+                   HorizontalTextAlignment="Start"
+                   Text="{Binding Customer.Name, StringFormat='Olá, {0}!'}"/>
+
+            <Frame BorderColor="#2f2f2f"
+                   WidthRequest="55"
+                   CornerRadius="27"
+                   Padding="0"
+                   HorizontalOptions="End"
+                   BackgroundColor="#2f2f2f">
+                
+                <Label Text="&#xf0f3;"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       FontSize="20"
+                       FontFamily="FontIcon"/>
+            </Frame>
+        </StackLayout>
+    </Shell.TitleView>
+    
+
+    <ScrollView>
+
+        <StackLayout
+            Orientation="Vertical"
+            Padding="8,16">
+
+            <Frame BackgroundColor="#3b46f1"
                BorderColor="#3b46f1"
                CornerRadius="30">
-            
-            <Grid RowDefinitions="20,90,20"
+
+                <Grid RowDefinitions="20,90,20"
                   ColumnDefinitions="*,*">
 
-                <Label Text="Seu saldo" TextColor="LightGray"/>
+                    <Label Text="Seu saldo" TextColor="LightGray"/>
 
-                <Label Grid.Row="1"
+                    <Label Grid.Row="1"
                        Grid.ColumnSpan="2"
                        VerticalTextAlignment="Start"
                        FontSize="40"
                        TextColor="White"
                        Text="{Binding Customer.Account.Amount, StringFormat='R$ {0:#.00}'}"/>
-                
-                <Image 
+
+                    <Image 
                     Source="visalogo.png"
                     HorizontalOptions="Start"
                     Grid.Column="0"
                     Grid.Row="2"/>
-                
-                <Label
+
+                    <Label
                     TextColor="LightGray"
                     HorizontalTextAlignment="End"
                     Grid.Row="2"
                     Grid.Column="1"
                     Text="0815 7185 **** ****"/>
 
+                </Grid>
+
+            </Frame>
+
+            <Grid
+                Margin="0,10,0,15"
+                ColumnDefinitions="*,*,60"
+                RowDefinitions="60"
+                RowSpacing="0"
+                ColumnSpacing="0"
+                Padding="0">
+
+                <BoxView
+                    Grid.ColumnSpan="3"
+                    Color="White"
+                    Margin="10,12"
+                    HorizontalOptions="FillAndExpand"/>
+
+                <Frame
+                    Grid.Column="0"
+                    Margin="0,0,-5,0"
+                    BorderColor="White"
+                    HorizontalOptions="StartAndExpand"
+                    CornerRadius="30"
+                    Padding="10">
+                    
+                    <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                        
+                        <Frame Padding="0"
+                           WidthRequest="40"
+                           CornerRadius="20"
+                           HorizontalOptions="Start"
+                           BorderColor="#fdb62f"
+                           BackgroundColor="#fdb62f">
+                            <Label Text="&#xf062;"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="20"
+                                   FontFamily="FontIconSolid"/>
+                        </Frame>
+
+                        <Label Text="Enviar"
+                           FontSize="20"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+                    Grid.Column="1"
+                    Margin="0,0,-5,0"
+                    BorderColor="White"
+                    HorizontalOptions="StartAndExpand"
+                    CornerRadius="30"
+                    Padding="10">
+                    <StackLayout Spacing="10"
+                             Orientation="Horizontal">
+                        <Frame Padding="0"
+                           WidthRequest="40"
+                           CornerRadius="20"
+                           HorizontalOptions="Start"
+                           BorderColor="#fdb62f"
+                           BackgroundColor="#fdb62f">
+                            <Label Text="&#xf063;"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="20"
+                                   FontFamily="FontIconSolid"/>
+                        </Frame>
+
+                        <Label Text="Receber"
+                           FontSize="20"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame 
+                    Grid.Column="2"
+                    BorderColor="White"
+                    CornerRadius="30"
+                    Padding="10">
+                    
+                    <Frame Padding="0"
+                           WidthRequest="40"
+                           CornerRadius="20"
+                           HorizontalOptions="Start"
+                           BorderColor="LightGray"
+                           BackgroundColor="LightGray">
+
+                        <Label Text="&#xf2a1;"
+                               FontFamily="FontIconSolid"
+                               TextColor="Black"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               FontSize="20"/>
+
+                    </Frame>
+                </Frame>
+
             </Grid>
-            
-        </Frame>
-    </VerticalStackLayout>
+
+            <Label Text="Envio rápido"
+                   Margin="0,12"
+                   FontSize="20" />
+
+            <ScrollView Orientation="Horizontal"
+                        Margin="-16,0"
+                        HorizontalScrollBarVisibility="Never">
+                
+                <StackLayout Orientation="Horizontal"
+                             BindableLayout.ItemsSource="{Binding Contacts}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout
+                                WidthRequest="80"
+                                HeightRequest="70"
+                                Orientation="Vertical">
+                                <Image WidthRequest="50"
+                                   Source="{Binding Avatar}"/>
+
+                                <Label Text="{Binding Name}"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="White"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+
+            <StackLayout Orientation="Horizontal" Margin="0,20" HorizontalOptions="FillAndExpand">
+                <Label Text="Atividade recente" FontSize="20" />
+
+                <Label Text="Ver tudo"
+                   HorizontalOptions="EndAndExpand"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   TextColor="Gray"
+                   FontSize="12" />
+
+            </StackLayout>
+
+            <Frame CornerRadius="30"
+               Padding="0,0,0,46"
+               Margin="-8,0,-8,-46"
+               VerticalOptions="EndAndExpand">
+                <ListView>
+                    
+                </ListView>
+            </Frame>
+
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
