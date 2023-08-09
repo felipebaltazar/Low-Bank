@@ -50,6 +50,7 @@
             label1.Size = new Size(116, 17);
             label1.TabIndex = 0;
             label1.Text = "Bem Vindo, Felipe!";
+            label1.Click += label1_Click;
             // 
             // Form1
             // 
