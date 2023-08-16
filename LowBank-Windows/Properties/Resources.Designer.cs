@@ -59,5 +59,15 @@ namespace LowBank_Windows.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Byte[].
+        /// </summary>
+        internal static byte[] Inter_VariableFont_slnt_wght {
+            get {
+                object obj = ResourceManager.GetObject("Inter_VariableFont_slnt_wght", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

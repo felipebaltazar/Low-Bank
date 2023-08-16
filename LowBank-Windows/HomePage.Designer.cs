@@ -1,6 +1,6 @@
 ﻿namespace LowBank_Windows
 {
-    partial class Form1
+    partial class HomePage
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             painelFundo = new CustomPanel();
             label4 = new Label();
             pictureBox2 = new PictureBox();
             cartaoCredito = new CustomPanel();
-            label3 = new Label();
+            pictureBox3 = new PictureBox();
+            label1 = new Label();
+            saldoTexto = new Label();
             label2 = new Label();
             button2 = new CustomButton();
             button1 = new CustomButton();
@@ -42,6 +44,7 @@
             painelFundo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             cartaoCredito.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -60,6 +63,7 @@
             painelFundo.Name = "painelFundo";
             painelFundo.Size = new Size(676, 256);
             painelFundo.TabIndex = 0;
+            painelFundo.MouseDoubleClick += Form1_DoubleClick;
             // 
             // label4
             // 
@@ -85,7 +89,9 @@
             // 
             cartaoCredito.ArredondaCantosInferiores = true;
             cartaoCredito.BackColor = Color.FromArgb(59, 70, 241);
-            cartaoCredito.Controls.Add(label3);
+            cartaoCredito.Controls.Add(pictureBox3);
+            cartaoCredito.Controls.Add(label1);
+            cartaoCredito.Controls.Add(saldoTexto);
             cartaoCredito.Controls.Add(label2);
             cartaoCredito.ForeColor = Color.FromArgb(59, 70, 241);
             cartaoCredito.Location = new Point(356, 56);
@@ -93,27 +99,49 @@
             cartaoCredito.Size = new Size(300, 180);
             cartaoCredito.TabIndex = 3;
             // 
-            // label3
+            // pictureBox3
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Segoe UI", 25F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(29, 55);
-            label3.Name = "label3";
-            label3.Size = new Size(244, 50);
-            label3.TabIndex = 5;
-            label3.Text = "R$ 10.000,00";
+            pictureBox3.BackColor = Color.Transparent;
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(23, 143);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(49, 16);
+            pictureBox3.TabIndex = 6;
+            pictureBox3.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(170, 144);
+            label1.Name = "label1";
+            label1.Size = new Size(116, 17);
+            label1.TabIndex = 6;
+            label1.Text = "0815 7185 **** ****";
+            // 
+            // saldoTexto
+            // 
+            saldoTexto.AutoSize = true;
+            saldoTexto.BackColor = Color.Transparent;
+            saldoTexto.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Pixel);
+            saldoTexto.ForeColor = Color.White;
+            saldoTexto.Location = new Point(29, 55);
+            saldoTexto.Name = "saldoTexto";
+            saldoTexto.Size = new Size(220, 48);
+            saldoTexto.TabIndex = 5;
+            saldoTexto.Text = "R$ 10.000,00";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             label2.ForeColor = Color.White;
             label2.Location = new Point(23, 35);
             label2.Name = "label2";
-            label2.Size = new Size(98, 25);
+            label2.Size = new Size(68, 17);
             label2.TabIndex = 4;
             label2.Text = "Seu saldo:";
             // 
@@ -129,6 +157,7 @@
             button2.TabIndex = 2;
             button2.Text = "Transferir";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -162,6 +191,10 @@
             pictureBox1.Size = new Size(325, 92);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
+            pictureBox1.MouseDoubleClick += Form1_DoubleClick;
+            pictureBox1.MouseDown += pictureBox1_MouseDown;
+            pictureBox1.MouseMove += Form1_MouseMove;
+            pictureBox1.MouseUp += Form1_MouseUp;
             // 
             // Form1
             // 
@@ -173,7 +206,10 @@
             Controls.Add(painelFundo);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Home";
+            Load += Form1_Load;
+            DoubleClick += Form1_DoubleClick;
             MouseDown += Form1_MouseDown;
             MouseMove += Form1_MouseMove;
             MouseUp += Form1_MouseUp;
@@ -182,6 +218,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             cartaoCredito.ResumeLayout(false);
             cartaoCredito.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -197,5 +234,8 @@
         private PictureBox pictureBox1;
         private Label label4;
         private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private Label label1;
+        private Label saldoTexto;
     }
 }
