@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace LowBank_Windows
 {
@@ -45,10 +47,18 @@ namespace LowBank_Windows
                 }
                 else
                 {
-                    var homePage = new HomePage(clienteResultado);
-                    homePage.Show();
+                    var senhaCriptografada = passwordTextbox.Text.Criptografa();
+                    if (clienteResultado.Password == senhaCriptografada)
+                    {
+                        var homePage = new HomePage(clienteResultado);
+                        homePage.Show();
 
-                    Hide();
+                        Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Senha inválida");
+                    }
                 }
             }
         }
@@ -79,5 +89,16 @@ namespace LowBank_Windows
         {
             this.CenterToScreen();
         }
+
+        private void cadastroButton_Click(object sender, EventArgs e)
+        {
+            var cadastroPage = new CadastroPage();
+            cadastroPage.Show();
+
+            cadastroPage.FormClosed += (s, e) => this.Show();
+
+            this.Hide();
+        }
+
     }
 }

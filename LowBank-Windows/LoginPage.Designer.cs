@@ -86,6 +86,7 @@
             cadastroButton.TabIndex = 6;
             cadastroButton.Text = "Cadastro";
             cadastroButton.UseVisualStyleBackColor = false;
+            cadastroButton.Click += cadastroButton_Click;
             // 
             // cpfTextbox
             // 
