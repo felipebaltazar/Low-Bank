@@ -40,42 +40,45 @@
             // 
             // nomeTextbox
             // 
-            nomeTextbox.Location = new Point(206, 151);
+            nomeTextbox.Location = new Point(172, 147);
             nomeTextbox.Name = "nomeTextbox";
             nomeTextbox.PlaceholderText = "Nome";
-            nomeTextbox.Size = new Size(110, 25);
+            nomeTextbox.Size = new Size(122, 25);
             nomeTextbox.TabIndex = 0;
             // 
             // cpfTextbox
             // 
-            cpfTextbox.Location = new Point(206, 199);
+            cpfTextbox.Location = new Point(172, 193);
             cpfTextbox.Name = "cpfTextbox";
             cpfTextbox.PlaceholderText = "CPF";
-            cpfTextbox.Size = new Size(110, 25);
+            cpfTextbox.Size = new Size(122, 25);
             cpfTextbox.TabIndex = 1;
+            cpfTextbox.TextChanged += cpfTextbox_TextChanged;
             // 
             // passwordTextbox
             // 
-            passwordTextbox.Location = new Point(206, 245);
+            passwordTextbox.Location = new Point(172, 235);
             passwordTextbox.Name = "passwordTextbox";
             passwordTextbox.PlaceholderText = "Password";
-            passwordTextbox.Size = new Size(110, 25);
+            passwordTextbox.Size = new Size(122, 25);
             passwordTextbox.TabIndex = 2;
             // 
             // cadastroButton
             // 
-            cadastroButton.Location = new Point(206, 354);
+            cadastroButton.BackColor = Color.FromArgb(253, 201, 46);
+            cadastroButton.FlatStyle = FlatStyle.Flat;
+            cadastroButton.Location = new Point(172, 327);
             cadastroButton.Name = "cadastroButton";
             cadastroButton.Size = new Size(120, 40);
             cadastroButton.TabIndex = 3;
             cadastroButton.Text = "Cadastrar";
-            cadastroButton.UseVisualStyleBackColor = true;
+            cadastroButton.UseVisualStyleBackColor = false;
             cadastroButton.Click += cadastroButton_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(224, 30);
+            pictureBox1.Location = new Point(189, 34);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(92, 92);
             pictureBox1.TabIndex = 4;
@@ -83,24 +86,27 @@
             // 
             // passwordConfirmTextbox
             // 
-            passwordConfirmTextbox.Location = new Point(206, 286);
+            passwordConfirmTextbox.Location = new Point(172, 281);
             passwordConfirmTextbox.Name = "passwordConfirmTextbox";
             passwordConfirmTextbox.PlaceholderText = "Password confirmation";
-            passwordConfirmTextbox.Size = new Size(110, 25);
+            passwordConfirmTextbox.Size = new Size(122, 25);
             passwordConfirmTextbox.TabIndex = 5;
             // 
             // CadastroPage
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(597, 503);
+            BackColor = Color.Black;
+            ClientSize = new Size(469, 396);
             Controls.Add(passwordConfirmTextbox);
             Controls.Add(pictureBox1);
             Controls.Add(cadastroButton);
             Controls.Add(passwordTextbox);
             Controls.Add(cpfTextbox);
             Controls.Add(nomeTextbox);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "CadastroPage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CadastroPage";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

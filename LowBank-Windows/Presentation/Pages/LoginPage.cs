@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using LowBank_Windows.Data;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -6,14 +7,16 @@ namespace LowBank_Windows
 {
     public partial class LoginPage : Form
     {
-        private const string dbPath = "C:\\Users\\felip\\Downloads\\LowBankBancoDeDados.csv";
-
         private bool FazendoDrag;
         private Point startDragDropPosition = Point.Empty;
 
-        public LoginPage()
+        private readonly BaseDataSource dataSource;
+
+        public LoginPage(BaseDataSource dataSource)
         {
             InitializeComponent();
+
+            this.dataSource = dataSource;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,13 +35,7 @@ namespace LowBank_Windows
                 // recupera cpf digitado na tela
                 string cpfDaTela = cpfTextbox.Text;
 
-                //Acessar o arquivo, ler o texto
-                string[] conteudoArquivo = File.ReadAllLines(dbPath);
-
-                var clienteResultado = conteudoArquivo
-                    .Skip(1)
-                    .Select(l => Cliente.Parse(l))
-                    .FirstOrDefault(c => c.CPF == cpfDaTela);
+                var clienteResultado = dataSource.GetClienteByCpf(cpfDaTela);
 
                 if (clienteResultado == null)
                 {
@@ -92,13 +89,12 @@ namespace LowBank_Windows
 
         private void cadastroButton_Click(object sender, EventArgs e)
         {
-            var cadastroPage = new CadastroPage();
+            var cadastroPage = new CadastroPage(dataSource);
             cadastroPage.Show();
 
             cadastroPage.FormClosed += (s, e) => this.Show();
 
             this.Hide();
         }
-
     }
 }
