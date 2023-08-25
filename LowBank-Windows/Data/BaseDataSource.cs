@@ -2,7 +2,7 @@
 {
     public abstract class BaseDataSource
     {
-        public abstract void SalvarCliente(Cliente cliente);
+        public abstract bool SalvarCliente(Cliente cliente);
 
         public abstract Cliente GetClienteByCpf(string cpfDaTela);
     }

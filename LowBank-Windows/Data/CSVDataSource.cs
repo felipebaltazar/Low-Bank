@@ -1,15 +1,17 @@
 ﻿using LowBank_Windows.Data;
 
+
 namespace LowBank_Windows
 {
     public class CSVDataSource : BaseDataSource
     {
         private const string dbPath = "C:\\Users\\felip\\Downloads\\LowBankBancoDeDados.csv";
 
-        public override void SalvarCliente(Cliente cliente)
+        public override bool SalvarCliente(Cliente cliente)
         {
             //Salvar novo cliente no documento csv
             File.AppendAllText(dbPath, "\n" + cliente.ToString());
+            return true;
         }
 
         public override Cliente? GetClienteByCpf(string cpf)

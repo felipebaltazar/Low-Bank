@@ -52,10 +52,17 @@ namespace LowBank_Windows
             var senhaCriptografada = senha.Criptografa();
             var novoCliente = new Cliente(nome, cpf, conta.ToString(), 0, senhaCriptografada);
 
-            dataSource.SalvarCliente(novoCliente);
+            var foiCriado = dataSource.SalvarCliente(novoCliente);
 
-            MessageBox.Show($"Conta {novoCliente.Conta} cadastrada com sucesso!");
-            this.Close();
+            if (foiCriado)
+            {
+                MessageBox.Show($"Conta {novoCliente.Conta} cadastrada com sucesso!");
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Esse cpf ja esta cadastrado!");
+            }
         }
 
         private void cpfTextbox_TextChanged(object sender, EventArgs e)

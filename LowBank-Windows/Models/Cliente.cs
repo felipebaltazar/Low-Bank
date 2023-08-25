@@ -1,12 +1,23 @@
-﻿namespace LowBank_Windows
+﻿using SQLite;
+
+namespace LowBank_Windows
 {
     public class Cliente
     {
-        public string Nome;
-        public string CPF;
-        public string Conta;
-        public decimal Saldo;
-        public string Password;
+        public string Nome { get; set; }
+
+        [PrimaryKey]
+        public string CPF { get; set; }
+
+        public string Conta { get; set; }
+
+        public decimal Saldo { get; set; }
+
+        public string Password { get; set; }
+
+        public Cliente()
+        {
+        }
 
         public Cliente(string nome, string cpf, string conta, decimal saldo, string password)
         {
